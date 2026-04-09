@@ -542,7 +542,53 @@ select.fi option{background:var(--bg);color:var(--txt)}
   </div>
   <div class="mfoot"><button class="mbtn s" onclick="cm('mo-scan')">Fermer</button></div>
 </div></div>
+<!-- Modal Mentions légales -->
+<div class="legal-ov h" id="mo-legal" onclick="if(event.target===this)this.classList.add('h')">
+  <div class="legal-sheet">
+    <h2>Mentions légales <button class="legal-close" onclick="document.getElementById('mo-legal').classList.add('h')">×</button></h2>
+    <h3>Éditeur du service</h3>
+    <p>LoyaltyOS est un service de fidélité dématérialisée édité par <strong>[Votre Société]</strong>, [forme juridique], au capital de [X €], immatriculée au RCS de [Ville] sous le numéro [SIRET].</p>
+    <p>Siège social : [Adresse complète]<br>Email : <a href="mailto:contact@loyaltyos.fr">contact@loyaltyos.fr</a><br>Directeur de la publication : [Nom Prénom]</p>
+    <h3>Hébergement</h3>
+    <p>Service hébergé par <strong>Vercel Inc.</strong> (San Francisco, USA) et <strong>Supabase Inc.</strong> Des clauses contractuelles standard encadrent les transferts hors UE conformément au RGPD.</p>
+    <h3>Propriété intellectuelle</h3>
+    <p>Tous les contenus de LoyaltyOS (textes, logos, interface) sont protégés par le droit d'auteur. Toute reproduction sans autorisation est interdite.</p>
+    <h3>Données personnelles (RGPD)</h3>
+    <p>LoyaltyOS collecte : nom, email, téléphone, historique de points. Ces données sont :</p>
+    <ul>
+      <li>Conservées pour la durée du contrat + 3 ans</li>
+      <li>Jamais revendues à des tiers</li>
+      <li>Accessibles, modifiables et supprimables sur demande</li>
+    </ul>
+    <p>Pour exercer vos droits RGPD : <a href="mailto:contact@loyaltyos.fr">contact@loyaltyos.fr</a></p>
+    <h3>Cookies</h3>
+    <p>Aucun cookie publicitaire. La session utilise <code>sessionStorage</code>, effacé à la fermeture du navigateur.</p>
+    <h3>Responsabilité</h3>
+    <p>LoyaltyOS est fourni "en l'état". L'éditeur décline toute responsabilité pour une interruption de service indépendante de sa volonté.</p>
+  </div>
+</div>
 
+<!-- Modal Contact -->
+<div class="legal-ov h" id="mo-contact" onclick="if(event.target===this)this.classList.add('h')">
+  <div class="legal-sheet">
+    <h2>Nous contacter <button class="legal-close" onclick="document.getElementById('mo-contact').classList.add('h')">×</button></h2>
+    <h3>Support</h3>
+    <p>📧 Email : <a href="mailto:contact@loyaltyos.fr">contact@loyaltyos.fr</a></p>
+    <p>🌐 Site : <a href="https://loyaltyos1.vercel.app" target="_blank">loyaltyos1.vercel.app</a></p>
+    <p>📞 Téléphone : [à compléter]</p>
+    <p>Horaires : [à compléter] — Délai de réponse moyen : 48h</p>
+    <h3>Demande de compte commerçant</h3>
+    <p>Contactez-nous par email avec votre nom, commerce et ville. Nous vous répondons sous 48h.</p>
+    <h3>Droits RGPD</h3>
+    <p>Suppression, rectification ou portabilité de vos données : <a href="mailto:contact@loyaltyos.fr">contact@loyaltyos.fr</a></p>
+  </div>
+</div>
+
+<div class="legal-footer">
+  <a onclick="document.getElementById('mo-legal').classList.remove('h')">Mentions légales</a>
+  <a onclick="document.getElementById('mo-contact').classList.remove('h')">Contact</a>
+  <span style="opacity:.6">© 2025 LoyaltyOS</span>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1321,57 +1367,8 @@ function doLogout(){sessionStorage.removeItem('los_merchant_sess');window.locati
 function fd(iso){if(!iso)return'—';const d=new Date(iso),now=new Date(),diff=Math.floor((now-d)/86400000);if(diff===0)return"Aujourd'hui";if(diff===1)return'Hier';return d.toLocaleDateString('fr-FR',{day:'numeric',month:'short'});}
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast on'+(type?' '+type:'');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),3000);}
 document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.add('h');if(o.id==='mo-scan')stopScanner();}}));
-}
-}
+
 init();
-}
 </script> 
-<!-- Modal Mentions légales -->
-<div class="legal-ov h" id="mo-legal" onclick="if(event.target===this)this.classList.add('h')">
-  <div class="legal-sheet">
-    <h2>Mentions légales <button class="legal-close" onclick="document.getElementById('mo-legal').classList.add('h')">×</button></h2>
-    <h3>Éditeur du service</h3>
-    <p>LoyaltyOS est un service de fidélité dématérialisée édité par <strong>[Votre Société]</strong>, [forme juridique], au capital de [X €], immatriculée au RCS de [Ville] sous le numéro [SIRET].</p>
-    <p>Siège social : [Adresse complète]<br>Email : <a href="mailto:contact@loyaltyos.fr">contact@loyaltyos.fr</a><br>Directeur de la publication : [Nom Prénom]</p>
-    <h3>Hébergement</h3>
-    <p>Service hébergé par <strong>Vercel Inc.</strong> (San Francisco, USA) et <strong>Supabase Inc.</strong> Des clauses contractuelles standard encadrent les transferts hors UE conformément au RGPD.</p>
-    <h3>Propriété intellectuelle</h3>
-    <p>Tous les contenus de LoyaltyOS (textes, logos, interface) sont protégés par le droit d'auteur. Toute reproduction sans autorisation est interdite.</p>
-    <h3>Données personnelles (RGPD)</h3>
-    <p>LoyaltyOS collecte : nom, email, téléphone, historique de points. Ces données sont :</p>
-    <ul>
-      <li>Conservées pour la durée du contrat + 3 ans</li>
-      <li>Jamais revendues à des tiers</li>
-      <li>Accessibles, modifiables et supprimables sur demande</li>
-    </ul>
-    <p>Pour exercer vos droits RGPD : <a href="mailto:contact@loyaltyos.fr">contact@loyaltyos.fr</a></p>
-    <h3>Cookies</h3>
-    <p>Aucun cookie publicitaire. La session utilise <code>sessionStorage</code>, effacé à la fermeture du navigateur.</p>
-    <h3>Responsabilité</h3>
-    <p>LoyaltyOS est fourni "en l'état". L'éditeur décline toute responsabilité pour une interruption de service indépendante de sa volonté.</p>
-  </div>
-</div>
-
-<!-- Modal Contact -->
-<div class="legal-ov h" id="mo-contact" onclick="if(event.target===this)this.classList.add('h')">
-  <div class="legal-sheet">
-    <h2>Nous contacter <button class="legal-close" onclick="document.getElementById('mo-contact').classList.add('h')">×</button></h2>
-    <h3>Support</h3>
-    <p>📧 Email : <a href="mailto:contact@loyaltyos.fr">contact@loyaltyos.fr</a></p>
-    <p>🌐 Site : <a href="https://loyaltyos1.vercel.app" target="_blank">loyaltyos1.vercel.app</a></p>
-    <p>📞 Téléphone : [à compléter]</p>
-    <p>Horaires : [à compléter] — Délai de réponse moyen : 48h</p>
-    <h3>Demande de compte commerçant</h3>
-    <p>Contactez-nous par email avec votre nom, commerce et ville. Nous vous répondons sous 48h.</p>
-    <h3>Droits RGPD</h3>
-    <p>Suppression, rectification ou portabilité de vos données : <a href="mailto:contact@loyaltyos.fr">contact@loyaltyos.fr</a></p>
-  </div>
-</div>
-
-<div class="legal-footer">
-  <a onclick="document.getElementById('mo-legal').classList.remove('h')">Mentions légales</a>
-  <a onclick="document.getElementById('mo-contact').classList.remove('h')">Contact</a>
-  <span style="opacity:.6">© 2025 LoyaltyOS</span>
-</div>
 </body>
 </html>
