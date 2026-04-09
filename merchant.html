@@ -1323,7 +1323,6 @@ function toast(msg,type=''){const t=document.getElementById('toast');t.textConte
 document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.add('h');if(o.id==='mo-scan')stopScanner();}}));
 
 init();
-</script>
 
 <!-- Modal Mentions légales -->
 <div class="legal-ov h" id="mo-legal" onclick="if(event.target===this)this.classList.add('h')">
@@ -1372,5 +1371,6 @@ init();
   <a onclick="document.getElementById('mo-contact').classList.remove('h')">Contact</a>
   <span style="opacity:.6">© 2025 LoyaltyOS</span>
 </div>
+</script>
 </body>
 </html>
