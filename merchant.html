@@ -1389,23 +1389,20 @@ function cm(id){document.getElementById(id).classList.add('h');if(id==='mo-scan'
 function doLogout(){sessionStorage.removeItem('los_merchant_sess');window.location.href='index.html';}
 function fd(iso){if(!iso)return'—';const d=new Date(iso),now=new Date(),diff=Math.floor((now-d)/86400000);if(diff===0)return"Aujourd'hui";if(diff===1)return'Hier';return d.toLocaleDateString('fr-FR',{day:'numeric',month:'short'});}
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast on'+(type?' '+type:'');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),3000);}
+
 document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.add('h');if(o.id==='mo-scan')stopScanner();}}));
-}
-  init();
-</script> 
-<script>
-window.sw = function(id) {
-  console.log("SW appelé avec :", id);
-
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
-
-  document.querySelectorAll('.ntab').forEach(t => {
-    t.classList.toggle('on', t.getAttribute('onclick')?.includes(id));
+document.querySelectorAll('.ov').forEach(o => {
+  o.addEventListener('click', e => {
+    if (e.target === o) {
+      o.classList.add('h');
+      if (o.id === 'mo-scan' && typeof stopScanner === 'function') {
+        stopScanner();
+      }
+    }
   });
+});
 
-  const target = document.getElementById('p-' + id);
-  if (target) target.classList.add('on');
-};
+init();
 </script>
 </body>
 </html>
