@@ -1368,15 +1368,24 @@ function useManualScan(){
   if(!value){toast('Entrez un code ou un QR brut','err');return;}
   resolveScannedClient(value);
 }
-function sw(id){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.ntab').forEach((t,i)=>t.classList.toggle('on',['dashboard','immersion','caisse','wallet','clients','notifs','rewards'][i]===id));
-  document.getElementById('p-'+id).classList.add('on');
-  if(id==='immersion')renderImmersion();
-  if(id==='caisse')renderCaisse();
-  if(id==='clients')renderClients();
+function sw(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+
+  document.querySelectorAll('.ntab').forEach(t => {
+    t.classList.toggle('on', t.getAttribute('onclick')?.includes(id));
+  });
+
+  const target = document.getElementById('p-' + id);
+  if (target) target.classList.add('on');
+
+  if (id === 'immersion' && typeof renderImmersion === 'function') renderImmersion();
+  if (id === 'caisse' && typeof renderCaisse === 'function') renderCaisse();
+  if (id === 'clients' && typeof renderClients === 'function') renderClients();
 }
 function cm(id){document.getElementById(id).classList.add('h');if(id==='mo-scan')stopScanner();}
+  if (id === 'mo-scan' && typeof stopScanner === 'function') {
+  stopScanner();
+}
 function doLogout(){sessionStorage.removeItem('los_merchant_sess');window.location.href='index.html';}
 function fd(iso){if(!iso)return'—';const d=new Date(iso),now=new Date(),diff=Math.floor((now-d)/86400000);if(diff===0)return"Aujourd'hui";if(diff===1)return'Hier';return d.toLocaleDateString('fr-FR',{day:'numeric',month:'short'});}
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast on'+(type?' '+type:'');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),3000);}
