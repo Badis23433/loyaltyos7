@@ -1393,5 +1393,19 @@ document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.
 }
   init();
 </script> 
+<script>
+window.sw = function(id) {
+  console.log("SW appelé avec :", id);
+
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+
+  document.querySelectorAll('.ntab').forEach(t => {
+    t.classList.toggle('on', t.getAttribute('onclick')?.includes(id));
+  });
+
+  const target = document.getElementById('p-' + id);
+  if (target) target.classList.add('on');
+};
+</script>
 </body>
 </html>
