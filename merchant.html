@@ -1381,18 +1381,20 @@ window.sw = function(id) {
   if (id === 'immersion' && typeof renderImmersion === 'function') renderImmersion();
   if (id === 'caisse' && typeof renderCaisse === 'function') renderCaisse();
   if (id === 'clients' && typeof renderClients === 'function') renderClients();
-};
-function cm(id){document.getElementById(id).classList.add('h');if(id==='mo-scan')stopScanner();}
-  if (id === 'mo-scan' && typeof stopScanner === 'function') {
-  stopScanner();
-}
-function toast(msg, type='') {
+
+  function toast(msg, type='') {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast on' + (type ? ' ' + type : '');
   clearTimeout(t._t);
   t._t = setTimeout(() => t.classList.remove('on'), 3000);
 }
+};
+function cm(id){document.getElementById(id).classList.add('h');if(id==='mo-scan')stopScanner();}
+  if (id === 'mo-scan' && typeof stopScanner === 'function') {
+  stopScanner();
+}
+
 function doLogout(){sessionStorage.removeItem('los_merchant_sess');window.location.href='index.html';}
 function fd(iso){if(!iso)return'—';const d=new Date(iso),now=new Date(),diff=Math.floor((now-d)/86400000);if(diff===0)return"Aujourd'hui";if(diff===1)return'Hier';return d.toLocaleDateString('fr-FR',{day:'numeric',month:'short'});}
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast on'+(type?' '+type:'');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),3000);}
