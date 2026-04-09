@@ -620,6 +620,20 @@ function walletSelectionValue(wallet){
   const key=normalizeWalletList(wallet).sort().join('+');
   return{'apple':'apple','google':'google','samsung':'samsung','apple+google':'both_ag','apple+samsung':'both_as','google+samsung':'both_gs','apple+google+samsung':'all_wallets'}[key]||'';
 }
+function fd(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  const now = new Date();
+  const diff = Math.floor((now - d) / 86400000);
+  
+  if (diff === 0) return "Aujourd'hui";
+  if (diff === 1) return 'Hier';
+  
+  return d.toLocaleDateString('fr-FR', { 
+    day: 'numeric', 
+    month: 'short' 
+  });
+}
 function walletSelectionToList(value){
   return{
     '':[],
