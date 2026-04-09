@@ -1368,7 +1368,7 @@ function useManualScan(){
   if(!value){toast('Entrez un code ou un QR brut','err');return;}
   resolveScannedClient(value);
 }
-function sw(id) {
+window.sw = function(id) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
 
   document.querySelectorAll('.ntab').forEach(t => {
@@ -1381,7 +1381,7 @@ function sw(id) {
   if (id === 'immersion' && typeof renderImmersion === 'function') renderImmersion();
   if (id === 'caisse' && typeof renderCaisse === 'function') renderCaisse();
   if (id === 'clients' && typeof renderClients === 'function') renderClients();
-}
+};
 function cm(id){document.getElementById(id).classList.add('h');if(id==='mo-scan')stopScanner();}
   if (id === 'mo-scan' && typeof stopScanner === 'function') {
   stopScanner();
